@@ -2,36 +2,42 @@
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class Spawner : MonoBehaviour
 {
     [SerializeField] private List<ItemSlot> _slots;
     [SerializeField] private List<GameObject> _prefubs;
+    [SerializeField] private List<GameObject> _pool;
+    [SerializeField] private GameObject _container;
+
+    public List<GameObject> Pool => _pool;
+    public List<ItemSlot> Slots => _slots;
+
+    public event UnityAction PlaceIsOver;
 
     public void Spawn()
     {
         if (TryGetObject(out ItemSlot slot))
         {
-            Instantiate(_prefubs.ElementAtOrDefault(Random.Range(0, _prefubs.Count)), slot.transform.position, Quaternion.identity); ;
-        }
-        else
-        {
-            Debug.Log("No empty slots");
-        }
+            GameObject spawned = Instantiate(_prefubs.ElementAtOrDefault(Random.Range(0, _prefubs.Count)), slot.transform.position, Quaternion.identity);
+            spawned.transform.SetParent(_container.transform);
+            _pool.Add(spawned);
 
-        //int randomIndex = Random.Range(0, _slots.Count);
+            spawned.GetComponent<DragAndDrop>().Destroied += OnBlockDestroyed;
 
-        //if (_slots[randomIndex].IsEmpty)
-        //{
-        //    Instantiate(_prefub, _slots[randomIndex].transform);
-        //}
-        //else
-        //{
-        //     Debug.Log("No empty slots");
-        //}
-
+            if (_pool.Count == _slots.Count)
+            {
+                PlaceIsOver?.Invoke();
+            }
+        }     
     }
 
+    private void OnBlockDestroyed(GameObject block)
+    {
+        block.GetComponent<DragAndDrop>().Destroied -= OnBlockDestroyed;
+        _pool.Remove(block);
+    }
 
     private bool TryGetObject(out ItemSlot result)
     {

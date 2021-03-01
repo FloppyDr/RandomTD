@@ -96,7 +96,7 @@ GameObject:
   - component: {fileID: 3290320424953729307}
   - component: {fileID: 7128652691524257980}
   m_Layer: 0
-  m_Name: Block (V)
+  m_Name: Block (W)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -337,7 +337,7 @@ Canvas:
   m_SortingBucketNormalizedSize: 0
   m_AdditionalShaderChannelsFlag: 0
   m_SortingLayerID: 0
-  m_SortingOrder: 27
+  m_SortingOrder: 3
   m_TargetDisplay: 0
 --- !u!114 &3290320425385492999
 MonoBehaviour:

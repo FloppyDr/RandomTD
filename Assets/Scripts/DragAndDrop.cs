@@ -1,22 +1,28 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.EventSystems;
 
+[RequireComponent(typeof(Block))]
+[RequireComponent(typeof(Collider2D))]
 public class DragAndDrop : MonoBehaviour
 {
-   [SerializeField] private float _speed =1;
+    [SerializeField] private float _speed = 1;
 
     private bool _isDrugging;
     private Block _sumTarget;
-    private ItemSlot _temSlot;
+    private Block _curretBlock;
+    private ItemSlot _itemSlot;
     private Vector3 _startPosition;
+    private Collider2D _collider;
 
     public bool IsDrugging => _isDrugging;
+    public event UnityAction<GameObject> Destroied;
 
     private void OnMouseDown()
     {
-        gameObject.GetComponent<Collider2D>().isTrigger = true;
+        _collider.isTrigger = true;
         _isDrugging = true;
     }
 
@@ -24,11 +30,15 @@ public class DragAndDrop : MonoBehaviour
     {
         TrySum();
         _isDrugging = false;
-        
-        gameObject.GetComponent<Collider2D>().isTrigger = false;
+
+        _collider.isTrigger = false;
     }
 
-   
+    private void Start()
+    {
+        _collider = GetComponent<Collider2D>();
+        _curretBlock = GetComponent<Block>();
+    }
 
     private void Update()
     {
@@ -39,10 +49,10 @@ public class DragAndDrop : MonoBehaviour
         }
         else
         {
-            transform.position = Vector3.MoveTowards(transform.position, _startPosition, _speed*Time.deltaTime);
+            transform.position = Vector3.MoveTowards(transform.position, _startPosition, _speed * Time.deltaTime);
         }
 
-        if (_startPosition.z ==0)
+        if (_startPosition.z == 0)
         {
             _startPosition.z -= 1;
         }
@@ -56,9 +66,10 @@ public class DragAndDrop : MonoBehaviour
 
     private void TrySum()
     {
-        if (_sumTarget!= null && gameObject.GetComponent<SpriteRenderer>().color == _sumTarget.GetComponent<SpriteRenderer>().color)
+        if (_sumTarget != null && _curretBlock.Color == _sumTarget.Color)
         {
             _sumTarget.LevelUp();
+            Destroied?.Invoke(gameObject);
             Destroy(gameObject);
         }
     }
@@ -67,13 +78,12 @@ public class DragAndDrop : MonoBehaviour
     {
         if (collision.TryGetComponent(out Block block))
         {
-            if (block.Level == gameObject.GetComponent<Block>().Level && block.Level<999) // Не забыть поменять на 6
+            if (block.Level == _curretBlock.Level)
             {
                 _sumTarget = block;
             }
         }
     }
-
     private void OnTriggerExit2D(Collider2D collision)
     {
         _sumTarget = null;
