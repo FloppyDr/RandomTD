@@ -6,6 +6,7 @@ using UnityEngine.Events;
 
 public class Player : MonoBehaviour
 {
+    [SerializeField] private AudioSource _audioSource;
     private int _score;
 
     public event UnityAction<int> ScoreChanged;
@@ -14,5 +15,11 @@ public class Player : MonoBehaviour
     {
         _score += level;
         ScoreChanged?.Invoke(_score);
-    }   
+        PlaySound();
+    }
+
+    private void PlaySound()
+    {
+        _audioSource.Play();
+    }
 }

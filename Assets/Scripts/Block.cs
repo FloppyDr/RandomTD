@@ -8,7 +8,7 @@ using System.Linq;
 [RequireComponent(typeof(SpriteRenderer))]
 public class Block : MonoBehaviour
 {
-    [SerializeField] private List<GameObject> _hand;
+    [SerializeField] private List<GameObject> _variants;
     [SerializeField] private Player _player;
 
     private SpriteRenderer _spriteRenderer;
@@ -44,7 +44,7 @@ public class Block : MonoBehaviour
 
     private void ChangeBlock()
     {
-        _color = _hand.ElementAtOrDefault(Random.Range(0, _hand.Count)).GetComponent<SpriteRenderer>().color;
+        _color = _variants.ElementAtOrDefault(Random.Range(0, _variants.Count)).GetComponent<SpriteRenderer>().color;
         _spriteRenderer.color = _color;        
     }
 }
