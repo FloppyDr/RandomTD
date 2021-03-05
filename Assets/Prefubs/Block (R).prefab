@@ -101,12 +101,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6c01dcd67f9ceec43993869d797f75f5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _hand:
-  - {fileID: 1286695772201763151}
-  - {fileID: 3361568444196825876, guid: f9803c88d15c53248af7f3ec45b3f357, type: 3}
-  - {fileID: 6556107132650576830, guid: e579eea019cbade41b88ede1ea3abeb1, type: 3}
-  - {fileID: 2191452476404966146, guid: 656eb8aa68f7fa4438b5a023e38d88ff, type: 3}
+  _variants:
+  - {fileID: 163715129021936844, guid: 656eb8aa68f7fa4438b5a023e38d88ff, type: 3}
+  - {fileID: 1006407854722406017}
+  - {fileID: 5104760718557432944, guid: e579eea019cbade41b88ede1ea3abeb1, type: 3}
+  - {fileID: 3641873679097445594, guid: f9803c88d15c53248af7f3ec45b3f357, type: 3}
   _player: {fileID: 0}
+  _color: {r: 1, g: 0.34901962, b: 0.36862746, a: 1}
 --- !u!114 &1286695772201763149
 MonoBehaviour:
   m_ObjectHideFlags: 0

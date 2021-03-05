@@ -279,12 +279,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6c01dcd67f9ceec43993869d797f75f5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _hand:
-  - {fileID: 1286695772201763151, guid: cc943ab99ae439d4790ee1c0c786416e, type: 3}
-  - {fileID: 3361568444196825876, guid: f9803c88d15c53248af7f3ec45b3f357, type: 3}
-  - {fileID: 6556107132650576830, guid: e579eea019cbade41b88ede1ea3abeb1, type: 3}
-  - {fileID: 2191452476404966146, guid: 656eb8aa68f7fa4438b5a023e38d88ff, type: 3}
+  _variants: []
   _player: {fileID: 0}
+  _color: {r: 0.098039225, g: 0.50980395, b: 0.7686275, a: 1}
 --- !u!114 &6393257579286680053
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -29,13 +29,15 @@ public class GameOverTrigger : MonoBehaviour
 
         int match = 0;
 
-        for (int i = 0; i < _spawner.Pool.Count; i++)
+        for (int i = 0; i < _spawner.SpawnedBlocks.Count; i++)
         {
-            for (int j = i + 1; j < _spawner.Pool.Count; j++)
+            for (int j = i + 1; j < _spawner.SpawnedBlocks.Count; j++)
             {
+                var curretBlock = _spawner.SpawnedBlocks[i].GetComponent<Block>();
+                var nextBlock = _spawner.SpawnedBlocks[j].GetComponent<Block>();
 
-                if (_spawner.Pool[i].GetComponent<Block>().Level == _spawner.Pool[j].GetComponent<Block>().Level
-                && _spawner.Pool[i].GetComponent<Block>().Color == _spawner.Pool[j].GetComponent<Block>().Color)
+                if (curretBlock.Level == nextBlock.Level
+                    && curretBlock.Color == nextBlock.Color)
                 {
                     match++;
                 }

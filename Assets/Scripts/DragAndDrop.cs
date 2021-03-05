@@ -58,12 +58,6 @@ public class DragAndDrop : MonoBehaviour
         }
     }
 
-    public void ChangeStartPosition(Vector3 newPosition)
-    {
-        _startPosition = newPosition;
-        _startPosition.z -= 1;
-    }
-
     private void TrySum()
     {
         if (_sumTarget != null && _curretBlock.Color == _sumTarget.Color)
@@ -84,8 +78,15 @@ public class DragAndDrop : MonoBehaviour
             }
         }
     }
+
     private void OnTriggerExit2D(Collider2D collision)
     {
         _sumTarget = null;
+    }
+
+    public void ChangeStartPosition(Vector3 newPosition)
+    {
+        _startPosition = newPosition;
+        _startPosition.z -= 1;
     }
 }
