@@ -6,12 +6,10 @@ using UnityEngine.Events;
 
 public class Spawner : Pool
 {
-
-
-    [SerializeField] private List<GameObject> _spawnedBlocks;
+    [SerializeField] private List<Block> _spawnedBlocks;
     [SerializeField] private GameObject _container;
 
-    public List<GameObject> SpawnedBlocks => _spawnedBlocks;
+    public List<Block> SpawnedBlocks => _spawnedBlocks;
 
     public event UnityAction PlaceIsOver;
 
@@ -21,7 +19,8 @@ public class Spawner : Pool
         {
             GameObject spawned = Instantiate(_prefubs.ElementAtOrDefault(Random.Range(0, _prefubs.Count)), slot.transform.position, Quaternion.identity);
             spawned.transform.SetParent(_container.transform);
-            _spawnedBlocks.Add(spawned);
+            Block block = spawned.GetComponent<Block>();
+            _spawnedBlocks.Add(block);
 
             spawned.GetComponent<DragAndDrop>().Destroied += OnBlockDestroyed;
 
@@ -32,7 +31,7 @@ public class Spawner : Pool
         }     
     }
 
-    private void OnBlockDestroyed(GameObject block)
+    private void OnBlockDestroyed(Block block)
     {
         block.GetComponent<DragAndDrop>().Destroied -= OnBlockDestroyed;
         _spawnedBlocks.Remove(block);

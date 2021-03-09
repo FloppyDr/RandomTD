@@ -18,7 +18,7 @@ public class DragAndDrop : MonoBehaviour
     private Collider2D _collider;
 
     public bool IsDrugging => _isDrugging;
-    public event UnityAction<GameObject> Destroied;
+    public event UnityAction<Block> Destroied;
 
     private void OnMouseDown()
     {
@@ -63,7 +63,7 @@ public class DragAndDrop : MonoBehaviour
         if (_sumTarget != null && _curretBlock.Color == _sumTarget.Color)
         {
             _sumTarget.LevelUp();
-            Destroied?.Invoke(gameObject);
+            Destroied?.Invoke(_curretBlock);
             Destroy(gameObject);
         }
     }

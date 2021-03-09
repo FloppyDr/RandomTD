@@ -2247,6 +2247,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 72a7d46c5b4b7b0449f9c8e642f9d18f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _prefubs:
+  - {fileID: 1286695772201763151, guid: cc943ab99ae439d4790ee1c0c786416e, type: 3}
+  - {fileID: 3361568444196825876, guid: f9803c88d15c53248af7f3ec45b3f357, type: 3}
+  - {fileID: 6556107132650576830, guid: e579eea019cbade41b88ede1ea3abeb1, type: 3}
+  - {fileID: 2191452476404966146, guid: 656eb8aa68f7fa4438b5a023e38d88ff, type: 3}
   _slots:
   - {fileID: 1992414488}
   - {fileID: 77974584}
@@ -2263,12 +2268,7 @@ MonoBehaviour:
   - {fileID: 1530146403}
   - {fileID: 609694030}
   - {fileID: 1470395408}
-  _prefubs:
-  - {fileID: 1286695772201763151, guid: cc943ab99ae439d4790ee1c0c786416e, type: 3}
-  - {fileID: 3361568444196825876, guid: f9803c88d15c53248af7f3ec45b3f357, type: 3}
-  - {fileID: 6556107132650576830, guid: e579eea019cbade41b88ede1ea3abeb1, type: 3}
-  - {fileID: 2191452476404966146, guid: 656eb8aa68f7fa4438b5a023e38d88ff, type: 3}
-  _pool: []
+  _spawnedBlocks: []
   _container: {fileID: 978289361}
 --- !u!4 &978289363
 Transform:

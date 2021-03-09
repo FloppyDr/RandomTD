@@ -27,14 +27,14 @@ public class GameOverTrigger : MonoBehaviour
     private void CheckGameOver()
     {
 
-        int match = 0;
+        int match = 0;      
 
         for (int i = 0; i < _spawner.SpawnedBlocks.Count; i++)
         {
             for (int j = i + 1; j < _spawner.SpawnedBlocks.Count; j++)
             {
-                var curretBlock = _spawner.SpawnedBlocks[i].GetComponent<Block>();
-                var nextBlock = _spawner.SpawnedBlocks[j].GetComponent<Block>();
+                var curretBlock = _spawner.SpawnedBlocks[i];
+                var nextBlock = _spawner.SpawnedBlocks[j];
 
                 if (curretBlock.Level == nextBlock.Level
                     && curretBlock.Color == nextBlock.Color)
@@ -49,7 +49,6 @@ public class GameOverTrigger : MonoBehaviour
             _gameOverScreenCanvas.alpha = 1;
             _gameOverScreenCanvas.interactable = true;
             _gameOverScreenCanvas.blocksRaycasts = true;
-            Debug.Log("GameOVer");
-        }
-    }
+        }       
+    }   
 }
